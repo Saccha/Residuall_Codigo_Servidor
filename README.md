@@ -4,9 +4,15 @@
 ### O código mostra como criar classes com GETS,POSTS para mostrar determinada resposta de HTTP de acordo com que foi pedido.
 ### A parte de Banco de Dados,mostra a criação de tabelas através das respostas do HTTP dos exercicios fornecidos
 
+
+
 O que usei durante as atividades |  O que não usei durante as atividades
 ---------------------------------|--------------------------------------
 SQL SERVER                       | Docker
 Spyder                           |
 Postman                          |
 JSON                             |
+
+
+#### Observação: Na questão 2 onde tem a body de requisição,está faltando propriedade do body inicial antes da outra propriedade,então adicionei outra propriedade
+chamada "emails" para poder usar melhor o postman e não dar erros

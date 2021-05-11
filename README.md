@@ -13,3 +13,5 @@ Spyder                           |
 Postman                          |
 JSON                             |
 
+### Sobre o desenvolvimento: Não usei Docker pois não tenho conhecimento em relação sobre o assunto
+#### Não usei Docker pois não tenho conhecimento em relação sobre o assunto. O que tinha faltado implementar foi um propriedade para o objeto nas questões 2 e 3,onde só há o objeto email.

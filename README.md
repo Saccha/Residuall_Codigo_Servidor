@@ -13,5 +13,3 @@ Spyder                           |
 Postman                          |
 JSON                             |
 
-
-#### Observação: Na questão 2 e 3 onde tem a body de requisição,está faltando propriedade do body inicial antes da outra propriedade,então adicionei outra propriedade chamada "emails" para poder usar melhor o postman e não dar erros

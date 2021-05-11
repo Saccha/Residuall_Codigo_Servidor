@@ -45,6 +45,28 @@ class validacaov1:
             'code': 200,
             'results': emailsvalidados})
 
+class validacaov3:
+    def POST(self):
+        jsonbody = json.loads(web.data())
+        conn = http.client.HTTPSConnection("api.eva.pingutil.com")
+        payload = ''
+        headers = {}
+        emailsvalidados = []
+        for email in jsonbody['emails']:
+            emailvalidado3 = json.loads(validaremail(email))
+            emailsvalidados.append(emailvalidado3)
+            email_address = str(email['email_address'])
+            conn.request("GET", "/email?email=" + email_address,
+                         payload,
+                         headers)
+            res = json.loads(conn.getresponse().read())
+            emailsvalidados.append({'data': res['data']})
+            inseriremailvalidadov3(email['email_address'], res['data'])
+        return json.dumps({
+            'status': 'OK',
+            'code': 200,
+            'results': emailsvalidados})
+   
 def inseriremailvalidadov1(email):
     conn = pymssql.connect(server='localhost', user='sa', password='password', database='Residuall')  
     cursor = conn.cursor()
@@ -54,7 +76,24 @@ def inseriremailvalidadov1(email):
     conn.commit()
     cursor.close()
     conn.close()
-   
+
+def inseriremailvalidadov3(emailaddress, data):
+    conn = pymssql.connect(server='localhost', user='sa', password='password', database='Residuall')  
+    cursor = conn.cursor()
+    cursor.execute(
+        "INSERT INTO ValidacaoV3 (email_address, domain, valid_syntax, disposable, webmail, deliverable, catch_all, gibberish) VALUES (%s, %s, %s, %s, %s, %s, %s, %s )",
+        (emailaddress,
+         'email',
+         data['valid_syntax'],
+         data['disposable'],
+         data['webmail'],
+         data['deliverable'],
+         data['catch_all'],
+         data['gibberish']))
+    conn.commit()
+    cursor.close()
+    conn.close()    
+
 def validaremail(email):
     email_address = str(email['email_address'])
     valido = False
@@ -72,26 +111,6 @@ def validaremail(email):
             'valid_syntax' : valido
             })
 
-class validacaov3:
-    def POST(self):
-        conn = http.client.HTTPSConnection("api.eva.pingutil.com")
-        payload = ''
-        headers = {}
-
-        jsonbody = json.loads(web.data())
-        emailsvalidados = []
-        for email in jsonbody['emails']:
-            email_address = str(email['email_address'])
-            conn.request("GET", "/email?email=" + email_address,
-                         payload,
-                         headers)
-            res = json.loads(conn.getresponse().read())
-            emailsvalidados.append({'data': res['data']})
-        return json.dumps({
-            'status': 'OK',
-            'code': 200,
-            'results': emailsvalidados})
-   
-
 if __name__ == "__main__":
     app.run()
+

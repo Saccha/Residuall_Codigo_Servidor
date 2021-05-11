@@ -11,7 +11,7 @@ ID ASC
 
 CREATE TABLE ValidacaoV3(
 ID int IDENTITY(1,1) NOT NULL,
-email_adress varchar(50) NULL,
+email_address varchar(50) NULL,
 domain varchar(50) NULL,
 valid_syntax bit NULL,
 disposable bit NULL,

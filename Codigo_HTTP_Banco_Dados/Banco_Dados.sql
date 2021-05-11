@@ -1,18 +1,10 @@
-CREATE TABLE Validacao(
-    ID              int    primary key      NOT NULL,
-    email_adress    varchar                 NOT NULL,
-    domain          varchar                 NOT NULL,
-    valid_syntax    boolean                 NOT NULL
+CREATE TABLE ValidacaoV1 (
+ID int IDENTITY(1,1) NOT NULL,
+email_address varchar(50) NULL,
+domain varchar(50) NULL,
+valid_syntax bit NULL,
+ CONSTRAINT [PK__ValidacaoV1] PRIMARY KEY CLUSTERED
+(
+ID ASC
 )
-
-CREATE TABLE Validacao3(
-    ID              int     primary key     NOT NULL,
-    email_adress    varchar                 NOT NULL,
-    domain          VARCHAR                 NOT NULL,
-    valid_syntax    boolean                 NOT NULL,
-    disposable      boolean                 NOT NULL,
-    webmail         boolean                 NOT NULL,
-    deliverable     boolean                 NOT NULL,
-    catch_all       boolean                 NOT NULL,
-    gibberish       boolean                 NOT NULL
 )
